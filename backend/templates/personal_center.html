@@ -1,0 +1,293 @@
+<!--
+// v0 by Vercel.
+// https://v0.dev/t/dsVl7V0ItZr
+-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<header class="bg-gradient-to-r from-pink-300 to-teal-300 text-white py-4 px-6 flex items-center justify-between">
+  <div class="flex items-center gap-4">
+    <a class="text-lg font-semibold glow" href="#" rel="ugc">
+      {{ username }}的个人中心
+    </a>
+    <nav class="hidden md:flex items-center gap-4">
+      <a onclick="redirectToPersonalCenter();return false" class="hover:text-gray-300 glow" href="#" rel="ugc">
+        历史记录
+      </a>
+      <a onclick="feedback();return false" class="hover:text-gray-300 glow" href="#" rel="ugc">
+        反馈
+      </a>
+      <a onclick="nearby();return false" class="hover:text-gray-300 glow" href="#" rel="ugc">
+        附件垃圾点
+      </a>
+      <a onclick="redirectToQuize();return false" class="hover:text-gray-300 glow" href="#" rel="ugc">
+        垃圾分类小测试
+      </a>
+    </nav>
+  </div>
+  <div class="flex items-center gap-2">
+    <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 md:hidden">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="w-5 h-5"
+      >
+        <line x1="4" x2="20" y1="12" y2="12"></line>
+        <line x1="4" x2="20" y1="6" y2="6"></line>
+        <line x1="4" x2="20" y1="18" y2="18"></line>
+      </svg>
+    </button>
+    <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="w-5 h-5"
+      >
+        <path d="M5 12h14"></path>
+        <path d="M12 5v14"></path>
+      </svg>
+      Upload Image
+    </button>
+  </div>
+</header>
+<main class="flex flex-col items-center justify-center py-8 px-4 md:px-6">
+  <div class="w-full max-w-4xl relative">
+    <div class="absolute inset-0 bg-gradient-to-r from-pink-300 to-teal-300 blur-[100px] opacity-50 z-0"></div>
+    <div class="relative z-10">
+      <div class="flex items-center justify-between mb-4">
+        <h1 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-300 to-teal-300 glow">
+          Image Recognition History
+        </h1>
+        <div class="flex items-center gap-2">
+          <input
+            class="flex h-10 w-full border border-input ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-100 dark:bg-gray-800 px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent"
+            placeholder="Search images..."
+            type="search"
+          />
+          <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="w-5 h-5"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </svg>
+          </button>
+          <button onclick="refreshPage()" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="w-5 h-5"
+            >
+              <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+              <path d="M21 3v5h-5"></path>
+              <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+              <path d="M8 16H3v5"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="border rounded-lg overflow-x-auto">
+        <div class="relative w-full overflow-auto">
+          <table class="w-full caption-bottom text-sm">
+            <thead class="[&amp;_tr]:border-b">
+              <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 glow">
+                  Image
+                </th>
+                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 glow">
+                  Recognized Objects
+                </th>
+                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 glow">
+                  Accuracy
+                </th>
+                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 glow">
+                  Date
+                </th>
+                <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 glow">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody class="[&amp;_tr:last-child]:border-0">
+              {% for img, rsl in zip(user_results.img, user_results.rsl) %}
+              <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+
+                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+
+                    <div class="flex items-center gap-2">
+
+                        <img src="data:image/png;base64,{{ img[0] }}" width="100" height="100" class="rounded-md" style="aspect-ratio: 100 / 100; object-fit: cover;" />
+
+                        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10 p-1">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+
+                                <path d="M20 5H9l-7 7 7 7h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"></path>
+
+                                <line x1="18" x2="12" y1="9" y2="15"></line>
+
+                                <line x1="12" x2="18" y1="9" y2="15"></line>
+
+                            </svg>
+
+                        </button>
+
+                    </div>
+
+                </td>
+
+                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+
+                    <div class="flex flex-col gap-1">
+
+                        <div>{{ rsl[0] }}</div>
+
+                        <div class="text-gray-500 dark:text-gray-400 text-sm">Recognized objects</div>
+
+                    </div>
+
+                </td>
+
+                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+
+                    <div class="flex flex-col gap-1">
+
+                        <div>{{ rsl[1]}}%</div>
+
+                        <div class="text-gray-500 dark:text-gray-400 text-sm">Accuracy</div>
+
+                    </div>
+
+                </td>
+
+                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+
+                    <div class="flex flex-col gap-1">
+
+                        <div>{{ rsl[2] }}</div>
+
+                        <div class="text-gray-500 dark:text-gray-400 text-sm">Date</div>
+
+                    </div>
+
+                </td>
+
+                <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+
+                    <div class="flex items-center gap-2">
+
+                        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10 p-1">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+
+                                <path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path>
+
+                                <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"></path>
+
+                                <path d="M7 3v4a1 1 0 0 0 1 1h7"></path>
+
+                            </svg>
+
+                        </button>
+
+                        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10 p-1">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+
+                                <path d="M3 6h18"></path>
+
+                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+
+                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+
+                            </svg>
+
+                        </button>
+
+                    </div>
+
+                </td>
+
+            </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
+<style>
+    button:hover {
+        background-color: #ffc0cb; /* 浅粉色 */
+    }
+</style>
+<script>
+  function refreshPage() {
+    // 刷新当前页面
+    window.location.reload();
+}
+ function redirectToPersonalCenter() {
+
+            const username = "{{ username }}";
+
+            let url = `http://127.0.0.1:5000/personal-center?username=${username}`;
+
+            window.location.href = url;
+
+        }
+  function redirectToQuize() {
+
+            const username = "{{ username }}";
+
+            window.location.href = '/quiz?username=' + encodeURIComponent(username);
+
+        }
+ function feedback() {
+
+            const username = "{{ username }}";
+
+            window.location.href = '/feedback?username=' + encodeURIComponent(username);
+
+        }
+  function nearby() {
+
+            const username = "{{ username }}";
+
+            window.location.href = '/nearby?username=' + encodeURIComponent(username);
+
+        }
+</script>
